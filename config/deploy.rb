@@ -1,17 +1,27 @@
+default_run_options[:pty] = true
 set :application, 'capistrano'
 set :repo_url, 'git@github.com:dunkamihiran/capistrano.git'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-
- set :deploy_to, '/var/www/dinuka'
  set :scm, :git
+ set :scm_passphrase, "dinuka123" 
+ set :deploy_to, '/var/www'
+ 
+ set :git_enable_submodules, 1 # if you have vendored rails
+set :branch, 'master'
+set :git_shallow_clone, 1
+set :scm_verbose, true
+
  set :scm_passphrase, ""
  set :user, "dinuka"
  set :rails_env, "production"
  set :branch, 'master'
   
-  set :stages, ["staging", "production"]
-set :default_stage, "production"
+ set :deploy_via, :remote_cache
+ set :ssh_options, { :forward_agent => true }
+  
+  set :stages, %w(production staging)
+set :default_stage, "production" 
 
 # set :format, :pretty
 # set :log_level, :debug
