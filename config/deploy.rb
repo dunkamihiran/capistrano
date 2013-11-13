@@ -1,4 +1,4 @@
-default_run_options[:pty] = true
+#default_run_options[:pty] = true
 set :application, 'capistrano'
 set :repo_url, 'git@github.com:dunkamihiran/capistrano.git'
 
